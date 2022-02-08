@@ -1,0 +1,82 @@
+<!--REGISTRATION FORM STARTS HERE-->
+<div class="container">
+  <h4>Registration Form : </h4>
+<form [formGroup]="addUserForm" (ngSubmit)="addUser(addUserForm)">
+  <div class="form-group row">
+    <label class="col-form-label col-sm-2" for="userFirstName">First Name</label>
+    <div class="col-sm-4">
+    <input type="text" class="form-control" formControlName="userFirstName" id="userFirstName" placeholder="Enter First Name">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-form-label col-sm-2" for="userLastName">Last Name</label>
+    <div class="col-sm-4">
+    <input type="text" class="form-control" formControlName="userLastName" id="userLastName" placeholder="Enter Last Name">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-form-label col-sm-2" for="userEmail">Email address</label>
+    <div class="col-sm-4">
+    <input (blur)="onEmail($event)" type="email" formControlName="userEmail" class="form-control" id="userEmail" aria-describedby="emailHelp" placeholder="Enter email">
+    <small  *ngIf="uniqueEmailMsg!=''" formControlName="email" id="emailHelp" class="form-text text-muted">{{uniqueEmailMsg}}</small>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label"for="userPhNo">Phone Number :</label>
+    <div class="col-sm-3">
+    <input type="number" class="form-control" formControlName="userPhNo" id="userPhNo" placeholder="Enter Phone Number">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label" for="userDob">Date Of Birth :</label>
+    <div class="col-sm-3">
+      <input type="date" class="form-control" formControlName="userDob" id="userDob" placeholder="Select DOB"></div>
+  </div>
+  <div class="form-group row">
+    <label for="userGender" class="col-sm-2 col-form-label">Gender :</label>
+    <div class="col-sm-1">
+      <div class="form-check form-check-inline">
+        <input type="radio" class="form-check-input" formControlName="userGender" name="userGender" id="male" value="male" unchecked>
+        <label class="form-check-label" for="male">Male</label>
+      </div>
+    </div>
+    <div class="col-sm-1">
+      <div class="form-check form-check-inline">
+        <input type="radio" class="form-check-input" formControlName="userGender" name="userGender" id="female" value="female" unchecked>
+        <label class="form-check-label" for="female">Female</label>
+      </div>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="userCountry" class="col-sm-2 col-form-label">Country :</label>
+    <div class="col-sm-4">
+      <select (change)="onSelect($event)" formControlName="userCountry" id="userCountry">
+        <option>-Select-</option>
+        <option *ngFor="let c of countries | keyvalue" value={{c.key|number}}>{{c.value}}</option>
+      </select>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="userState" class="col-sm-2 col-form-label">State :</label>
+    <div class="col-sm-4">
+      <select (change)="onStateSelect($event)" formControlName="userState" id="userState">
+        <option>-Select-</option>
+        <option *ngFor="let s of states | keyvalue" value={{s.key|number}}>{{s.value}}</option>
+      </select>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="userCity" class="col-sm-2 col-form-label">City :</label>
+    <div class="col-sm-4">
+      <select formControlName="userCity" id="userCity">
+        <option>-Select-</option>
+        <option *ngFor="let ct of cities | keyvalue" value={{ct.key|number}}>{{ct.value}}</option>
+      </select>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary" [disabled]="!addUserForm.valid">Submit</button>
+  &nbsp;&nbsp;&nbsp;
+  <button type="reset" class="btn btn-primary">Reset</button>
+</form>
+</div>
+<!--REGISTRATION FORM STARTS HERE-->

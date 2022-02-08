@@ -1,0 +1,35 @@
+<div class="container-fluid">
+  <h3 class="font-weight-bold text-center m-3">Forgot Password</h3>
+  <div class="row">
+
+    <!-- for center aligning -->
+    <div class="col col-sm-4"></div>
+    <div class="col p-4 border border-secondary rounded text-center">
+
+      <!-- forgotPwd form for form binding with the forgotPwdObj -->
+    <form [formGroup]="forgotPwdFormGroup" (ngSubmit)="forgotPwdFn(forgotPwdFormGroup)">
+
+      <div class="form-group row">
+        <label class="col-form-label col-sm-3" for="email">Email :</label>
+        <div class="col-sm-8">
+        <input type="email" class="form-control" formControlName="email" id="email">
+        </div>
+      </div>
+
+        <button class="btn btn-primary btn-sm mt-4" type="submit" [disabled]="!forgotPwdFormGroup.valid">Submit</button>
+        <button type="reset" (click)="reset()" class = "btn btn-primary btn-sm ml-4 mt-4">Reset</button>
+
+      <p  *ngIf="forgotPwdResponse!='' && successEvent " class="text-success text-center p-2 form-group"> {{forgotPwdResponse}}</p>
+      <button *ngIf="successEvent" class="link link-primary" routerLink="/login">Login Now</button>
+      <p  *ngIf="forgotPwdResponse!='' && !successEvent" class="text-danger text-center p-2 form-group"> {{forgotPwdResponse}}</p>
+
+    </form>
+
+  </div>
+
+  <!-- for center aligning -->
+  <div class="col col-sm-4"></div>
+</div>
+
+
+</div>

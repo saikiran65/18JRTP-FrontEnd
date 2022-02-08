@@ -1,0 +1,53 @@
+<div class="container-fluid">
+  <p>dynquery works!</p>
+
+  <!-- form binding for fields to implement search functionality-->
+  <div>
+    <form [formGroup]="dynqueryFormGroup" (ngSubmit)="dynqueryFn(dynqueryFormGroup)">
+
+      <div class="form-group row">
+        <label class="col-form-label col-sm-3" for="planName">Plan Name :</label>
+        <div class="col-sm-8">
+          <select class="form-control" formControlName="planName" id="planName">
+              <option>-Select-</option>
+              <option *ngFor="let plan of insurancePlans">{{plan}}</option>
+          </select>
+        </div>
+
+        <label class="col-form-label col-sm-3" for="planStatus">Plan Status :</label>
+        <div class="col-sm-8">
+          <select type="text" class="form-control" formControlName="planStatus" id="planStatus">
+            <option>-Select-</option>
+            <option *ngFor="let status of insurancePlanStatus"> {{status}} </option>
+          </select>
+        </div>
+
+        <button class="btn btn-primary" type="submit" [disabled]="!dynqueryFormGroup.valid">search</button>
+      </div>
+    </form>
+
+    <!-- table of records display -->
+    <div>
+      <table class="table">
+        <thead class="thead-dark">
+        <tr>
+          <th>Plan ID</th>
+          <th>Plan Name</th>
+          <th>Plan Holder</th>
+          <th>Holder SSN</th>
+          <th>Plan Status</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let insPlan of dynqueryObj">
+            <td >{{insPlan.planId}}</td>
+            <td>{{insPlan.planName}}</td>
+            <td>{{insPlan.holderName}}</td>
+            <td>{{insPlan.holderSsn}}</td>
+            <td>{{insPlan.planStatus}}</td>
+          </tr>
+      </tbody>
+      </table>
+    </div>
+  </div>
+</div>

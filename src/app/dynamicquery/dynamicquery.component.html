@@ -1,0 +1,67 @@
+
+
+<div class="container-fluid">
+  <!-- <p>dynamicquery works!</p> -->
+  <h3 class="text-center mt-2 mb-4">Insurance Plans</h3>
+
+  <!-- form binding for fields to implement search functionality-->
+  <div>
+    <form [formGroup]="dynamicqueryFormGroup" (ngSubmit)="dynamicqueryFn(dynamicqueryFormGroup)">
+
+      <div class="form-group row">
+        <label class="col-form-label col-sm-2" for="planName">Plan Name :</label>
+        <div class="col-sm-2">
+          <select class="form-control" formControlName="planName" id="planName">
+              <option>-Select-</option>
+              <option *ngFor="let plan of insurancePlans">{{plan}}</option>
+          </select>
+        </div>
+
+        <label class="col-form-label col-sm-2" for="planStatus">Plan Status :</label>
+        <div class="col-sm-2">
+          <select type="text" class="form-control" formControlName="planStatus" id="planStatus">
+            <option>-Select-</option>
+            <option *ngFor="let status of insurancePlanStatus"> {{status}} </option>
+          </select>
+        </div>
+        <div>
+          <button class="btn btn-primary" type="submit" [disabled]="!dynamicqueryFormGroup.valid">search</button>
+        </div>
+
+      </div>
+    </form>
+
+
+    <!-- table of records display -->
+    <div>
+      <table class="table">
+        <thead class="thead-dark">
+        <tr>
+          <th>Plan ID</th>
+          <th>Plan Name</th>
+          <th>Plan Holder</th>
+          <th>Holder SSN</th>
+          <th>Plan Status</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let insPlan of responseObj">
+            <td >{{insPlan.planId}}</td>
+            <td>{{insPlan.planName}}</td>
+            <td>{{insPlan.holderName}}</td>
+            <td>{{insPlan.holderSsn}}</td>
+            <td>{{insPlan.planStatus}}</td>
+          </tr>
+      </tbody>
+      </table>
+    </div>
+
+    <div class="text-right">
+      <button class="btn btn-success" (click)="excelFile()">Excel</button> <!--type=submit not req-->
+        &nbsp;&nbsp;
+      <button class="btn btn-success" (click)="pdfFile()">PDF</button> <!--type=submit not req-->
+    </div>
+
+  </div>
+</div>
+

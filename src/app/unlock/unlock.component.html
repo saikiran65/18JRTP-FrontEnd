@@ -1,0 +1,42 @@
+
+<div class="container">
+    <p>unlock works!</p>
+    <form [formGroup]="unlockAccForm" (ngSubmit)="unlockAcc(unlockAccForm)">
+
+      <div class="form-group row">
+        <label class="col-form-label col-sm-2" for="email">Email :</label>
+        <div class="col-sm-4">
+        <input type="hidden" class="form-control" formControlName="email" id="email">{{userEmail}}
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-form-label col-sm-2" for="tempPwd">Temporary Password :</label>
+        <div class="col-sm-4">
+        <input type="password" class="form-control" formControlName="tempPwd" id="tempPwd" placeholder="Enter Temporary Password">
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-form-label col-sm-2" for="newPwd">New Password :</label>
+        <div class="col-sm-4">
+        <input type="password" class="form-control" formControlName="newPwd" id="newPwd" placeholder="Enter New Password">
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-form-label col-sm-2" for="confPwd">Confirm Password :</label>
+        <div class="col-sm-4">
+        <input (input)="checkPwd($event)" type="password" class="form-control" formControlName="confPwd" id="confPwd" placeholder="Enter Confirm Password">
+        </div>
+        <p *ngIf="!isPwdsMatch">{{pwdCheckMsg}}</p>
+      </div>
+
+      <button type="submit" class="btn btn-primary" (click)="unlockConf()" [disabled]="!unlockAccForm.valid || !isPwdsMatch || !proceed">Unlock</button>
+      &nbsp;&nbsp;&nbsp;
+      <button type="reset" (click)="reset()" class = "btn btn-primary">Reset</button>
+
+    </form>
+      <br>
+      <p *ngIf="unlockAccMsg!=null || unlockAccMsg!='' ">{{unlockAccMsg}}</p>
+</div>
