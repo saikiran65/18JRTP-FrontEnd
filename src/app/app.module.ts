@@ -19,6 +19,9 @@ import { DynqueryComponent } from './dynquery/dynquery.component';
 import { DynqueryService } from './dynquery/dynquery.service';
 import { DynamicqueryComponent } from './dynamicquery/dynamicquery.component';
 import { DynamicqueryService } from './dynamicquery/dynamicquery.service';
+import { AppregComponent } from './appreg/appreg.component';
+import { AppregService } from './appreg/appreg.service';
+import { ApiresponseComponent } from './apiresponse/apiresponse.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +31,9 @@ import { DynamicqueryService } from './dynamicquery/dynamicquery.service';
     LoginComponent,
     ForgotpwdComponent,
     DynqueryComponent,
-    DynamicqueryComponent
+    DynamicqueryComponent,
+    AppregComponent,
+    ApiresponseComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +43,7 @@ import { DynamicqueryService } from './dynamicquery/dynamicquery.service';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [RegServiceService,UnlockService,LoginService,ForgotpwdService,DynqueryService,DynamicqueryService],
+  providers: [RegServiceService,UnlockService,LoginService,ForgotpwdService,DynqueryService,DynamicqueryService,AppregService,AppregComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
